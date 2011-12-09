@@ -11,8 +11,7 @@ if(jQuery) (function($) {
 	$.extend($.fn, {
 		
 		miniColors: function(o, data) {
-			
-			
+
 			var create = function(input, o, data) {
 				
 				//
@@ -102,14 +101,10 @@ if(jQuery) (function($) {
 				input.removeData('colorPicker');
 				input.removeData('mousebutton');
 				input.removeData('moving');
-				input.unbind('click.miniColors');
-				input.unbind('focus.miniColors');
-				input.unbind('blur.miniColors');
-				input.unbind('keyup.miniColors');
-				input.unbind('keydown.miniColors');
-				input.unbind('paste.miniColors');
-				$(document).unbind('mousedown.miniColors');
-				$(document).unbind('mousemove.miniColors');
+				input.unbind('.miniColors');
+				
+				$(document).unbind('.miniColors');
+				
 				
 			};
 			
@@ -154,11 +149,14 @@ if(jQuery) (function($) {
 				var selector = $('<div class="miniColors-selector"></div>');
 				selector.append('<div class="miniColors-colors" style="background-color: #FFF;"><div class="miniColors-colorPicker"></div></div>');
 				selector.append('<div class="miniColors-hues"><div class="miniColors-huePicker"></div></div>');
+				
+				console.log( o )
 				selector.css({
 					top: input.is(':visible') ? input.offset().top + input.outerHeight() : input.data('trigger').offset().top + input.data('trigger').outerHeight(),
 					left: input.is(':visible') ? input.offset().left : input.data('trigger').offset().left,
 					display: 'none'
-				}).addClass( input.attr('class') );
+				})
+				.addClass( input.attr('class') );
 				
 				// Set background for colors
 				var hsb = input.data('hsb');
