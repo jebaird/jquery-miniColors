@@ -193,6 +193,13 @@ if(jQuery) (function($) {
 				input.data('colorPicker', selector.find('.miniColors-colorPicker'));
 				input.data('mousebutton', 0);
 				
+				//displayhelper - lets users all their own markup to the display of the picker - use with caution
+				//this - is selector
+				if( $.isFunction( options.displayHelper ) ){
+					options.displayHelper.apply( selector, [ input ] );
+				}
+				
+				
 				$('BODY').append(selector);
 				selector.fadeIn(100);
 				
