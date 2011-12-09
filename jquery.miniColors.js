@@ -149,7 +149,6 @@ if(jQuery) (function($) {
 				hide();				
 				
 				var options = input.data('options')
-				console.log( options )
 				// Generate the selector
 				var selector = $('<div class="miniColors-selector"></div>');
 				selector.append('<div class="miniColors-colors" style="background-color: #FFF;"><div class="miniColors-colorPicker"></div></div>');
