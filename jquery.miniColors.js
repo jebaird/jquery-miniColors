@@ -33,6 +33,9 @@ if(jQuery) (function($) {
 				// Set input data
 				input.data('trigger', trigger);
 				input.data('hsb', hsb);
+				//stash the options here, so we can acess the position values on show
+				input.data('options', o );
+				
 				if( o.change ) input.data('change', o.change);
 				
 				// Handle options
@@ -145,18 +148,30 @@ if(jQuery) (function($) {
 				// Hide all other instances 
 				hide();				
 				
+				var options = input.data('options')
+				console.log( options )
 				// Generate the selector
 				var selector = $('<div class="miniColors-selector"></div>');
 				selector.append('<div class="miniColors-colors" style="background-color: #FFF;"><div class="miniColors-colorPicker"></div></div>');
 				selector.append('<div class="miniColors-hues"><div class="miniColors-huePicker"></div></div>');
+				selector
+					.hide()
+					.addClass( input.attr('class') );
 				
-				console.log( o )
-				selector.css({
-					top: input.is(':visible') ? input.offset().top + input.outerHeight() : input.data('trigger').offset().top + input.data('trigger').outerHeight(),
-					left: input.is(':visible') ? input.offset().left : input.data('trigger').offset().left,
-					display: 'none'
-				})
-				.addClass( input.attr('class') );
+				
+				//if they passed the position option use jquery ui position
+				if( options.position ){
+					selector.position( $.extend( options.position, { of: input }))
+					
+				}else{
+					selector
+						.css({
+							top: input.is(':visible') ? input.offset().top + input.outerHeight() : input.data('trigger').offset().top + input.data('trigger').outerHeight(),
+							left: input.is(':visible') ? input.offset().left : input.data('trigger').offset().left,
+							display: 'none'
+					})
+				}
+				
 				
 				// Set background for colors
 				var hsb = input.data('hsb');
