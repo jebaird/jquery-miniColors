@@ -4,8 +4,40 @@
  * Copyright 2011 Cory LaViska for A Beautiful Site, LLC. (http://abeautifulsite.net/)
  *
  * Dual licensed under the MIT or GPL Version 2 licenses
+ * 
+ * 
+ * 
+ * Copyright 2011 Jesse Baird - converted to a jquery ui widget
  *
+ * events
+ * 	beforeOpen
+ * 	open
+ * 	beforeClose
+ * 	close
+ * 
 */
+
+(function($){
+	
+$.widget('jb.miniColors',{
+	options: {
+		//if target input has no value then set the value to white
+		defaultColor: '#fff'
+	},
+	_create: function(){
+		
+	},
+	destory: function(){
+		
+	}
+})
+	
+	
+	
+})( jQuery );
+
+
+
 if(jQuery) (function($) {
 	
 	$.extend($.fn, {
@@ -154,7 +186,7 @@ if(jQuery) (function($) {
 				selector.append('<div class="miniColors-colors" style="background-color: #FFF;"><div class="miniColors-colorPicker"></div></div>');
 				selector.append('<div class="miniColors-hues"><div class="miniColors-huePicker"></div></div>');
 				selector
-					//.hide()
+					.hide()
 					.addClass( input.attr('class') );
 				
 				
@@ -195,15 +227,19 @@ if(jQuery) (function($) {
 				
 				//displayhelper - lets users all their own markup to the display of the picker - use with caution
 				//this - is selector
-			
+				
+				
 				
 				$('BODY').append(selector);
 				selector.fadeIn(100,function(){
+					console.log( $.isFunction( options.displayHelper )  )
 					if( $.isFunction( options.displayHelper ) ){
 						options.displayHelper.apply( selector, [ input ] );
 					}
-				
+					
 				});
+				
+
 				
 				// Prevent text selection in IE
 				selector.bind('selectstart', function() { return false; });
