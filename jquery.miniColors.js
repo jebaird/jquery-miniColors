@@ -196,7 +196,7 @@ if(jQuery) (function($) {
 				//displayhelper - lets users all their own markup to the display of the picker - use with caution
 				//this - is selector
 			
-				
+			
 				$('BODY').append(selector);
 				selector.fadeIn(100,function(){
 					if( $.isFunction( options.displayHelper ) ){
