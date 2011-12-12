@@ -262,11 +262,13 @@ if(jQuery) (function($) {
 					$(this).removeData('selector');
 					$(selector).fadeOut(100, function() {
 						$(this).remove();
+						$(input).trigger('miniColorsHide.miniColors')
 					});
 				});
 				
 				$(document).unbind('mousedown.miniColors');
 				$(document).unbind('mousemove.miniColors');
+				
 				
 			};
 			
