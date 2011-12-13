@@ -298,6 +298,7 @@ if(jQuery) (function($) {
 					$(this).removeData('selector');
 					$(selector).fadeOut(100, function() {
 						$(this).remove();
+						$(input).trigger('miniColorsHide.miniColors')
 					});
 				});
 				
