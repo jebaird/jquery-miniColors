@@ -230,6 +230,8 @@ if(jQuery) (function($) {
 					
 					if( $(event.target).parents().andSelf().hasClass('miniColors') ) return;
 					
+					//console.log( 'hidding')
+					
 					hide(input);
 				});
 				
@@ -249,20 +251,29 @@ if(jQuery) (function($) {
 			
 			
 			var hide = function(input) {
-				
 				//
 				// Hides one or more miniColors selectors
 				//
 				
 				// Hide all other instances if input isn't specified
-				if( !input ) input = '.miniColors';
+				if( input == undefined ){
+					input = '.miniColors';
+				} else{
+					var options = input.data('options');
+					if( $.isFunction( options.displayHelper ) ){
+							options.hide.apply( input.data('selector'), [ input ] );
+						}
+				}
 				
+				//var options = input.data('options')
+ 
 				$(input).each( function() {
 					var selector = $(this).data('selector');
 					$(this).removeData('selector');
+					
 					$(selector).fadeOut(100, function() {
 						$(this).remove();
-						$(input).trigger('miniColorsHide.miniColors')
+						
 					});
 				});
 				
